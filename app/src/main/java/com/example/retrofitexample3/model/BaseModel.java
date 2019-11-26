@@ -8,6 +8,9 @@ public class BaseModel implements Parcelable {
     private String mission_name;
     private Boolean is_tentative;
     private Rocket rocket;
+    private Links links;
+
+
 
     protected BaseModel(Parcel in) {
         flight_number = in.readInt();
@@ -15,6 +18,7 @@ public class BaseModel implements Parcelable {
         byte tmpIs_tentative = in.readByte();
         is_tentative = tmpIs_tentative == 0 ? null : tmpIs_tentative == 1;
         rocket = in.readParcelable(Rocket.class.getClassLoader());
+        links =in.readParcelable(Links.class.getClassLoader());
     }
 
     public static final Creator<BaseModel> CREATOR = new Creator<BaseModel>() {
@@ -61,6 +65,13 @@ public class BaseModel implements Parcelable {
         this.rocket = rocket;
     }
 
+    public Links getLinks() {
+        return links;
+    }
+
+    public void setLinks(Links links) {
+        this.links = links;
+    }
     @Override
     public int describeContents() {
         return 0;
@@ -72,5 +83,6 @@ public class BaseModel implements Parcelable {
         dest.writeString(mission_name);
         dest.writeByte((byte) (is_tentative == null ? 0 : is_tentative ? 1 : 2));
         dest.writeParcelable(rocket, flags);
+        dest.writeParcelable(links, flags);
     }
 }

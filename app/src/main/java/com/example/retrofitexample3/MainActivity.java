@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements CheckBaseAction.L
     public void getMainBaseResources(List<BaseModel> response) {
 
         Toast.makeText(this,response.get(1).getRocket().getFirst_stage().getCores().get(0).getCore_serial(),Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,response.get(0).getLinks().getMission_patch(),Toast.LENGTH_SHORT).show();
 
     }
 
